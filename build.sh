@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
-export PATH="$HOME/opt/cross-x86_64-neoos/bin:$PATH"
+# The hosted NeoOS cross toolchain (neoos-hosted-gcc). Overridable so a
+# fresh checkout -- e.g. neoos-os-builder's scratch directory -- can
+# point at wherever it lives.
+NEOOS_TOOLCHAIN="${NEOOS_TOOLCHAIN:-$HOME/opt/cross-x86_64-neoos}"
+export PATH="$NEOOS_TOOLCHAIN/bin:$PATH"
 PREFIX="${PREFIX:-$(pwd)/build-output}"
 mkdir -p "$PREFIX"
 cd upstream
